@@ -27,7 +27,7 @@
 ;; Aranea is an trial on web crawling using elisp.
 ;; It can be used to do small crawling tasks.
 
-;; Code:
+;;; Code:
 
 (cl-defun aranea--weave (&key url on-result on-next-url index)
   "Crawl an :url searching a file :pattern. Download if in: output-dir if it find something."
