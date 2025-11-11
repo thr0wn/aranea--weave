@@ -1,6 +1,9 @@
-[![](https://img.shields.io/badge/elisp-black?logo=elisp)](https://www.gnu.org/software/emacs/manual/html_node/eintr/)
-[![](https://img.shields.io/badge/emacs-black?logo=emacs)](https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html)
-
+<p>
+  <a href="https://www.gnu.org/software/emacs/download.html">
+    <img src="https://www.gnu.org/software/emacs/images/emacs.png" width="24"></img>
+    emacs and elisp
+  </a>
+</p>
 
 # aranea--weave: an elisp crawler
 Super simple crawler using elisp. It may help you in small tasks or helpto study elisp as it did to me.
