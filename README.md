@@ -6,7 +6,7 @@
 </p>
 
 # aranea--weave: an elisp crawler
-Super simple crawler using elisp. It may help you in small tasks or helpto study elisp as it did to me.
+Super simple crawler using elisp. It may help you in small tasks or help to study elisp as it did to me.
 
 ## Install
 In Emacs:
