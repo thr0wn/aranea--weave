@@ -1,13 +1,15 @@
 [![](https://img.shields.io/badge/elisp-black?logo=elisp)](https://www.gnu.org/software/emacs/manual/html_node/eintr/)
-[![](https://img.shields.io/badge/emacas-black?logo=emacs)](https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html)
+[![](https://img.shields.io/badge/emacs-black?logo=emacs)](https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html)
 
 
 # aranea--weave: an elisp crawler
-Super simple crawler using elisp. It may help you in small tasks or just to study elisp as it did to me.
+Super simple crawler using elisp. It may help you in small tasks or helpto study elisp as it did to me.
 
 ## Install
 In Emacs:
+```
 RET package-install RET https://github/thr0wn/aranea--weave
+```
 
 ## Usage
 ### Download a single formatted html from a url
