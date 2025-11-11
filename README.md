@@ -11,7 +11,7 @@ Super simple crawler using elisp. It may help you in small tasks or help to stud
 ## Install
 In Emacs:
 ```
-RET package-install RET https://github/thr0wn/aranea--weave
+M-x package-install RET https://github/thr0wn/aranea--weave RET
 ```
 
 ## Usage
