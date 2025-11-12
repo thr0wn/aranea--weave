@@ -16,25 +16,22 @@ M-x package-vc-install RET https://github/thr0wn/aranea--weave RET
 
 ## Usage
 ### Download a single formatted html from a url
-Download grindosaur of Digimon World 1 as html.
+Download grindosaur of Digimon World 1 as html. Note that `url-copy-file` could do the same job.
 ```elisp
 ;; load 'arane--weave after installation
 (require 'aranea--weave)
 
 ;; crawl grindosaur
 (aranea--weave
- :url "https://www.grindosaur.com/en/games/digimon-world/digimon"
- :on-result
- (lambda (buffer-response url)
-   (with-current-buffer buffer-response
+ "https://www.grindosaur.com/en/games/digimon-world/digimon"
+ (lambda (&key buffer &rest args)
+   (with-current-buffer buffer
      ;; copy request body to aranea--output
      (let ((aranea--output (get-buffer-create "aranea.out")))
        (copy-to-buffer aranea--output (re-search-forward "\n\n" nil t) (point-max))
-
        ;; format html in aranea--output and save to a file
        (with-current-buffer aranea--output
          (html-mode)
-         (sgml-pretty-print (point-min) (point-max))
          (write-file "digimon-world-1-all-digimon.html")
          )
        )

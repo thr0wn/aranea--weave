@@ -29,24 +29,25 @@
 
 ;;; Code:
 
-(cl-defun aranea--weave (&key url on-result on-next-url index)
-  "Crawl an :url searching a file :pattern. Download if in: output-dir if it find something."
-  (let* (
-         (aranea--buffer (url-retrieve-synchronously url))
-         (index (+ (or index 0) 1))
-         (next-url (if (functionp on-next-url) (funcall on-next-url aranea--output index)))
-         )
-    (with-current-buffer aranea--buffer
-      (goto-char (point-min))
-      (funcall on-result aranea--buffer url)
-      )
-    (when next-url
-      (aranea--weave
-       :url next-url
-       :on-result on-result
-       :on-next-url on-next-url
-       :index index
-       )
+(defun aranea--weave (url callback)
+  "Retrieve url and callback with (apply callback status)"
+  (url-retrieve url (aranea--weave-on-url-retrieve url callback))
+  )
+
+(defun aranea--weave-on-url-retrieve (url callback)
+  (lambda (&optional status)
+    (let ((aranea--buffer (current-buffer)))
+      (with-current-buffer aranea--buffer
+        (goto-char (point-min))
+        (funcall callback
+                 :buffer aranea--buffer
+                 :status status
+                 :url url
+                 :next (lambda (next-url)
+                         (aranea--weave next-url callback)
+                         )
+                 )
+        )
       )
     )
   )
