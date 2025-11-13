@@ -24,15 +24,16 @@ Download grindosaur of Digimon World 1 as html. Note that `url-copy-file` could 
 ;; crawl grindosaur
 (aranea--weave
  "https://www.grindosaur.com/en/games/digimon-world/digimon"
- (lambda (&key buffer &rest args)
+ (lambda (status buffer &rest args)
    (with-current-buffer buffer
      ;; copy request body to aranea--output
-     (let ((aranea--output (get-buffer-create "aranea.out")))
+     (let ((aranea--output (get-buffer-create "aranea.out"))) 
        (copy-to-buffer aranea--output (re-search-forward "\n\n" nil t) (point-max))
        ;; format html in aranea--output and save to a file
        (with-current-buffer aranea--output
          (html-mode)
          (write-file "digimon-world-1-all-digimon.html")
+         (find-file "digimon-world-1-all-digimon.html")
          )
        )
      )

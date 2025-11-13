@@ -32,24 +32,24 @@
 (defun aranea--weave (url callback)
   "Retrieve the specified url and call callback as below:
   (funcall callback
-    :buffer aranea--buffer
-    :status status
-    :url url
-    :next (lambda (next-url)
-            (aranea--weave next-url callback)
-          )
+    status
+    buffer
+    url
+    (lambda (next-url)
+      (aranea--weave next-url callback)
+    )
   )
 
 Parameters:
-  :buffer: buffer where response resides
-  :status: same as url-retrieve callback statuses
-  :url: retrieved url
-  :next: function to call to do another aranea--weave
+  status: same as url-retrieve callback statuses
+  buffer: buffer where response resides
+  url: retrieved url
+  next: function to call to do another aranea--weave
   
 Declare your callback like below to access response contents:
   (aranea--weave
     \"some url\"
-    (lambda (&key buffer &rest args)
+    (lambda (status buffer &rest args)
       (...do something...)
 
 "
@@ -58,14 +58,14 @@ Declare your callback like below to access response contents:
 
 (defun aranea--weave-on-url-retrieve (url callback)
   (lambda (&optional status)
-    (let ((aranea--buffer (current-buffer)))
-      (with-current-buffer aranea--buffer
+    (let ((buffer (current-buffer)))
+      (with-current-buffer buffer
         (goto-char (point-min))
         (funcall callback
-                 :buffer aranea--buffer
-                 :status status
-                 :url url
-                 :next (lambda (next-url)
+                 status
+                 buffer
+                 url
+                 (lambda (next-url)
                          (aranea--weave next-url callback)
                          )
                  )
