@@ -30,7 +30,29 @@
 ;;; Code:
 
 (defun aranea--weave (url callback)
-  "Retrieve url and callback with (apply callback status)"
+  "Retrieve the specified url and call callback as below:
+  (funcall callback
+    :buffer aranea--buffer
+    :status status
+    :url url
+    :next (lambda (next-url)
+            (aranea--weave next-url callback)
+          )
+  )
+
+Parameters:
+  :buffer: buffer where response resides
+  :status: same as url-retrieve callback statuses
+  :url: retrieved url
+  :next: function to call to do another aranea--weave
+  
+Declare your callback like below to access response contents:
+  (aranea--weave
+    \"some url\"
+    (lambda (&key buffer &rest args)
+      (...do something...)
+
+"
   (url-retrieve url (aranea--weave-on-url-retrieve url callback))
   )
 
