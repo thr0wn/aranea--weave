@@ -9,14 +9,15 @@
 Super simple crawler using elisp. It may help you in small tasks or help to study elisp as it did to me.
 
 ## Install
-In Emacs:
+In your Emacs:
 ```
 M-x package-vc-install RET https://github/thr0wn/aranea--weave RET
 ```
 
 ## Usage
+Here are some snippets using the package.
 ### Download a single formatted html from a url
-Download grindosaur of Digimon World 1 as html. Note that `url-copy-file` could do the same job.
+Download full grindosaur page of Digimon World 1 as html. Note that `url-copy-file` could do the same job.
 ```elisp
 ;; load 'arane--weave after installation
 (require 'aranea--weave)
@@ -40,7 +41,9 @@ Download grindosaur of Digimon World 1 as html. Note that `url-copy-file` could 
    )
  )
 ```
+
 ### Download some images from grindosaur
+Download digimon icons from grindosaur of Digimon World 1 and print the results in a `org-mode` buffer. 
 ```elisp
 ;; load 'arane--weave after installation
 (require 'aranea--weave)
